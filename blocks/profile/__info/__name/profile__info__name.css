@@ -10,8 +10,8 @@
 
 @media (max-width: 1250px) {
 
-  .profile__info__name {
-    
+  .profile__info__name {  
     font-size: 27px;
     line-height: 33px;
   }
+}
