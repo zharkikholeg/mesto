@@ -23,7 +23,7 @@
 }
 
 
-@media (max-width : 1250px) {
+@media (max-width: 1250px) {
   .popup__submit {
     width: 238px;
     margin-left: 22px;
