@@ -18,3 +18,4 @@
 HTML, CSS, JS, CSS Flexbox, CSS Grid
 
 **сылка на github pages**
+https://zharkikholeg.github.io/mesto/
