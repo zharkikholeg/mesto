@@ -1,0 +1,31 @@
+.profile__info__edit {
+  height: 10px;
+  width: 10px;
+  display: inline;
+  align-self: center;
+  padding: 7px;
+  border: 1px solid #FFFFFF;
+  margin-left: 18px;
+  -webkit-transition: opacity 0.6s ease-in-out;
+  -moz-transition: opacity 0.6s ease-in-out;
+  -ms-transition: opacity 0.6s ease-in-out;
+  -o-transition: opacity 0.6s ease-in-out;
+  transition: opacity 0.6s ease-in-out;
+}
+
+.profile__info__edit:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+
+@media (max-width : 1250px) {
+
+  .profile__info__edit {
+    margin-left: 10px;
+    height: 7.5px;
+    width: 7.5px;
+    padding: 5px;
+
+  }
+}

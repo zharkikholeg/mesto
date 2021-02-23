@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="pages/index.css">
+  <title>Mesto</title>
+</head>
+<body class="root">
+  <div class="page">
+    <header class="header">
+      <img class="header__logo" src="images/header-logo.svg" alt="лого">
+      <div class="header__line"></div>
+    </header>
+
+    <section class="profile">
+      <img class="profile__avatar" src="images/ava.jpg" alt="аватар"></img>
+      <div class="profile__info">
+        <div class="profile__info__wrapper">
+          <h1 class="profile__info__name">Жак-Ив Кусто</h1>
+            <img class="profile__info__edit" src="images/edit.svg" alt="редактировать"> 
+        </div>
+        <p class="profile__info__bio">Исследователь океана</p>
+      </div>
+      <img class="profile__add-button" src="images/cross-1.svg" alt="кнопка добавить"> 
+    </section>
+
+    <section class="elements">
+      <div class="element">
+        <img class="element__image" src="images/element-1.jpg" alt="Карачаевск">
+        <p class="element__text">Карачаевск</p>
+        <a href="#" class="element__heart"></a>
+      </div>
+      <div class="element">
+        <img class="element__image" src="images/element-2.jpg" alt="Гора Эльбрус">
+        <p class="element__text">Гора Эльбрус</p>
+        <a href="#" class="element__heart"></a>
+      </div>
+      <div class="element">
+        <img class="element__image" src="images/element-3.jpg" alt="Домбай">
+        <p class="element__text">Домбай</p>
+        <a href="#" class="element__heart"></a>
+      </div>
+      <div class="element">
+        <img class="element__image" src="images/element-2.jpg" alt="Гора Эльбрус">
+        <p class="element__text">Гора Эльбрус</p>
+        <a href="#" class="element__heart"></a>
+      </div>
+      <div class="element">
+        <img class="element__image" src="images/element-3.jpg" alt="Домбай">
+        <p class="element__text">Домбай</p>
+        <a href="#" class="element__heart"></a>
+      </div>
+      <div class="element">
+        <img class="element__image" src="images/element-1.jpg" alt="картинка элемента">
+        <p class="element__text">Карачаево-Черкессия</p>
+        <a href="#" class="element__heart"></a>
+      </div>
+    </section>
+    
+    <footer class="footer">
+      <p class="footer__text">&copy; 2020. Mesto Russia</p>
+    </footer>
+
+    <div class="popup">
+      <div class="popup__container">
+        <h2 class="popup__heading">Редактировать профиль</h2>
+        <form class="popup__form">
+          <input class="popup__input" type="text" id="name">
+          <div class="popup__line"></div>
+          <input class="popup__input" type="text" id="bio">
+          <div class="popup__line"></div>
+          <input class="popup__submit" type="submit" value="Сохранить">
+          <img class="popup__close-icon" src="images/close-icon.svg" alt="кнопка закрытия всплявающнго окна">
+        </form>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="js/main.js"></script>
+</body>
