@@ -1,4 +1,4 @@
-let editButtin = document.querySelector('.profile__info__edit');
+let editButton = document.querySelector('.profile__info-edit');
 let popup = document.querySelector('.popup');
 let closeButton = document.querySelector('.popup__close-icon');
 
@@ -7,15 +7,15 @@ let formBio = document.querySelector('#bio');
 let formElement = document.querySelector('.popup__form');
 
 
-editButtin.onclick = function() {
-  document.querySelector('#name').value = document.querySelector('.profile__info__name').textContent;
-  document.querySelector('#bio').value = document.querySelector('.profile__info__bio').textContent;
-  popup.style.visibility='visible';
+function openPopup() {
+  document.querySelector('#name').value = document.querySelector('.profile__info-name').textContent;
+  document.querySelector('#bio').value = document.querySelector('.profile__info-bio').textContent;
+  popup.classList.add("popup_active");
 };
 
 
-closeButton.onclick = function() {
-  popup.style.visibility='hidden';
+function closePopup() {
+  popup.classList.remove("popup_active");
 };
 
 
@@ -28,13 +28,14 @@ function formSubmitHandler (evt) {
     newName = formName.value;
     newBio = formBio.value;
     // Выберите элементы, куда должны быть вставлены значения полей
-    let currentName = document.querySelector('.profile__info__name');
-    let currentBio = document.querySelector('.profile__info__bio')
+    let currentName = document.querySelector('.profile__info-name');
+    let currentBio = document.querySelector('.profile__info-bio')
     // Вставьте новые значения с помощью textContent
     currentName.textContent = newName;
     currentBio.textContent = newBio;
-    popup.style.visibility='hidden';
+    popup.classList.remove("popup_active");
 }
 
 formElement.addEventListener('submit', formSubmitHandler);
-
+editButton.addEventListener('click', openPopup);
+closeButton.addEventListener('click', closePopup);

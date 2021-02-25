@@ -10,54 +10,65 @@
     <div class="page">
       <header class="header">
         <img class="header__logo" src="images/header-logo.svg" alt="лого">
-        <div class="header__line"></div>
       </header>
-
-      <section class="profile">
-        <img class="profile__avatar" src="images/ava.jpg" alt="аватар">
-        <div class="profile__info">
-          <div class="profile__info-wrapper">
-            <h1 class="profile__info-name">Жак-Ив Кусто</h1>
-              <img class="profile__info-edit" src="images/edit.svg" alt="редактировать"> 
+      <main>
+        <section class="profile">
+          <img class="profile__avatar" src="images/ava.jpg" alt="аватар">
+          <div class="profile__info">
+            <div class="profile__info-wrapper">
+              <h1 class="profile__info-name">Жак-Ив Кусто</h1>
+                <button class="profile__info-edit" type="button"></button>
+            </div>
+            <p class="profile__info-bio">Исследователь океана</p>
           </div>
-          <p class="profile__info-bio">Исследователь океана</p>
-        </div>
-        <img class="profile__add-button" src="images/cross-1.svg" alt="кнопка добавить"> 
-      </section>
+          <button class="profile__add-button" type="button"></button>
+        </section>
 
-      <section class="elements">
-        <div class="element">
-          <img class="element__image" src="images/element-1.jpg" alt="Карачаевск">
-          <p class="element__text">Карачаевск</p>
-          <a href="#" target="_self" class="element__heart"></a>
-        </div>
-        <div class="element">
-          <img class="element__image" src="images/element-2.jpg" alt="Гора Эльбрус">
-          <p class="element__text">Гора Эльбрус</p>
-          <a href="#" target="_self" class="element__heart"></a>
-        </div>
-        <div class="element">
-          <img class="element__image" src="images/element-3.jpg" alt="Домбай">
-          <p class="element__text">Домбай</p>
-          <a href="#" target="_self" class="element__heart"></a>
-        </div>
-        <div class="element">
-          <img class="element__image" src="images/element-2.jpg" alt="Гора Эльбрус">
-          <p class="element__text">Гора Эльбрус</p>
-          <a href="#" target="_self" class="element__heart"></a>
-        </div>
-        <div class="element">
-          <img class="element__image" src="images/element-3.jpg" alt="Домбай">
-          <p class="element__text">Домбай</p>
-          <a href="#" target="_self" class="element__heart"></a>
-        </div>
-        <div class="element">
-          <img class="element__image" src="images/element-1.jpg" alt="картинка элемента">
-          <p class="element__text">Карачаево-Черкессия</p>
-          <a href="#" target="_self" class="element__heart"></a>
-        </div>
-      </section>
-      
+        <ul class="elements">
+          <li class="element">
+            <img class="element__image" src="images/element-1.jpg" alt="Карачаевск">
+            <div class="element__wrapper">
+              <h3 class="element__text">Карачаевск</h3>
+              <button type="button" class="element__heart"></button>
+            </div>
+          </li>
+          <li class="element">
+            <img class="element__image" src="images/element-2.jpg" alt="Гора Эльбрус">
+            <div class="element__wrapper">
+              <h3 class="element__text">Гора Эльбрус</h3>
+              <button type="button" class="element__heart"></button>
+            </div>
+          </li>
+          <li class="element">
+            <img class="element__image" src="images/element-3.jpg" alt="Домбай">
+            <div class="element__wrapper">
+              <h3 class="element__text">Домбай</h3>
+              <button type="button" class="element__heart"></button>
+            </div>
+          </li>
+          <li class="element">
+            <img class="element__image" src="images/element-2.jpg" alt="Гора Эльбрус">
+            <div class="element__wrapper">
+              <h3 class="element__text">Гора Эльбрус</h3>
+              <button type="button" class="element__heart"></button>
+            </div>
+          </li>
+          <li class="element">
+            <img class="element__image" src="images/element-3.jpg" alt="Домбай">
+            <div class="element__wrapper">
+              <h3 class="element__text">Домбай</h3>
+              <button type="button" class="element__heart"></button>
+            </div>
+          </li>
+          <li class="element">
+            <img class="element__image" src="images/element-1.jpg" alt="картинка элемента">
+            <div class="element__wrapper">
+              <h3 class="element__text">Карачаево-Черкессия</h3>
+              <button type="button" class="element__heart"></button>
+            </div>
+          </li>
+        </ul>
+      </main>
       <footer class="footer">
         <p class="footer__text">&copy; 2020. Mesto Russia</p>
       </footer>
@@ -65,14 +76,12 @@
       <div class="popup">
         <div class="popup__container">
           <h2 class="popup__heading">Редактировать профиль</h2>
-          <form class="popup__form">
+          <form class="popup__form" name="popup-form">
             <input class="popup__input" type="text" id="name">
-            <div class="popup__line"></div>
             <input class="popup__input" type="text" id="bio">
-            <div class="popup__line"></div>
             <input class="popup__submit" type="submit" value="Сохранить">
-            <img class="popup__close-icon" src="images/close-icon.svg" alt="кнопка закрытия всплявающнго окна">
           </form>
+          <button class="popup__close-icon" type="button"></button>
         </div>
       </div>
     </div>
