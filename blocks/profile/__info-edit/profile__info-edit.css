@@ -23,6 +23,7 @@
 @media (max-width: 1250px) {
 
   .profile__info-edit {
+    background-size: 7.5px 7.5px;
     margin-left: 10px;
     height: 18px;
     width: 18px;

@@ -24,8 +24,7 @@
 
 
   .profile__add-button {
-    background: url('../../../images/cross-2.svg') no-repeat;
-    background-position: center;
+    background-size: 16px 16px;
     margin: 0;
     margin-top: 36px;
     padding: 17px 132px;
