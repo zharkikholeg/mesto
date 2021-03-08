@@ -3,6 +3,7 @@
   background-position: center;
   height: 19px;
   width: 22px;
+  cursor: pointer;
   
   top: 312px;
   right: 30px;
@@ -15,7 +16,7 @@
 }
 
 .element__heart:hover {
-  opacity: 0.5;
+  opacity: 0.2;
 }
 
 .element__heart:active {

@@ -1,0 +1,12 @@
+.popup__preview-container {
+  max-width: 1280px;
+  max-width: 75vw;
+  min-width: 320px;
+  max-height: 75vh;
+  position: relative;
+  margin: 12.5vh auto;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  
+}

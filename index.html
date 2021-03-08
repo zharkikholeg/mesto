@@ -26,48 +26,6 @@
 
         <section>
           <ul class="elements">
-            <li class="element">
-              <img class="element__image" src="images/element-1.jpg" alt="Карачаевск">
-              <div class="element__wrapper">
-                <h3 class="element__text">Карачаевск</h3>
-                <button type="button" class="element__heart"></button>
-              </div>
-            </li>
-            <li class="element">
-              <img class="element__image" src="images/element-2.jpg" alt="Гора Эльбрус">
-              <div class="element__wrapper">
-                <h3 class="element__text">Гора Эльбрус</h3>
-                <button type="button" class="element__heart"></button>
-              </div>
-            </li>
-            <li class="element">
-              <img class="element__image" src="images/element-3.jpg" alt="Домбай">
-              <div class="element__wrapper">
-                <h3 class="element__text">Домбай</h3>
-                <button type="button" class="element__heart"></button>
-              </div>
-            </li>
-            <li class="element">
-              <img class="element__image" src="images/element-2.jpg" alt="Гора Эльбрус">
-              <div class="element__wrapper">
-                <h3 class="element__text">Гора Эльбрус</h3>
-                <button type="button" class="element__heart"></button>
-              </div>
-            </li>
-            <li class="element">
-              <img class="element__image" src="images/element-3.jpg" alt="Домбай">
-              <div class="element__wrapper">
-                <h3 class="element__text">Домбай</h3>
-                <button type="button" class="element__heart"></button>
-              </div>
-            </li>
-            <li class="element">
-              <img class="element__image" src="images/element-1.jpg" alt="картинка элемента">
-              <div class="element__wrapper">
-                <h3 class="element__text">Карачаево-Черкессия</h3>
-                <button type="button" class="element__heart"></button>
-              </div>
-            </li>
           </ul>
         </section>
 
@@ -87,7 +45,42 @@
           <button class="popup__close-icon" type="button"></button>
         </div>
       </div>
+      
+      <div class="popup popup_for-adding">
+        <div class="popup__container">
+          <h2 class="popup__heading">Новое место</h2>
+          <form class="popup__form" name="popup-form">
+            <input class="popup__input" type="text" id="place-name" name="place-name" placeholder="Название">
+            <input class="popup__input" type="text" id="link" name="link" placeholder="Ссылка на картинку">
+            <input class="popup__submit" type="submit" value="Создать">
+          </form>
+          <button class="popup__close-icon" type="button"></button>
+        </div>
+      </div>
+
+          <div class="popup popup_for-preview">
+            <div class="popup__preview-container">
+              <img src="#" alt="" class="popup__image">
+              <h4 class="popup__name"></h4>
+              <button class="popup__close-icon popup__close-icon_for-preview" type="button"></button>
+            </div>
+            
+          </div>
+
+          <template id="element">
+            <li class="element">
+              <div class="element__image-wrapper">
+                <button type="button" class="element__trash"></button>
+                <img class="element__image" alt="" src="#">
+              </div>
+              <div class="element__wrapper">
+                <h3 class="element__text"></h3>
+                <button type="button" class="element__heart"></button>
+              </div>
+            </li>
+          </template>
     </div>
+
     <script type="text/javascript" src="js/main.js"></script>
   </body>
 </html>
