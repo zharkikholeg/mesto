@@ -25,11 +25,8 @@ function openProfilePopup() {
 
 function formSubmitHandler(evt) {
   evt.preventDefault();
-  newName = formName.value;
-  newBio = formBio.value;
-
-  currentName.textContent = newName;
-  currentBio.textContent = newBio;
+  currentName.textContent = formName.value;
+  currentBio.textContent = formBio.value;
   closeModal(profilePopup);
 }
 
@@ -119,7 +116,7 @@ function createElement(name, imageLink) {
     popupImage.alt = name;
     popupName.textContent = name;
 
-    popupForPreviw.classList.add("popup_active");
+    openModal(popupForPreviw);
   });
 
   return element;
