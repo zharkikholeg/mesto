@@ -11,6 +11,13 @@ const formElement = document.querySelector(".popup__form");
 
 function openModal(popupVariable) {
   popupVariable.classList.add("popup_active");
+  const handleEscPress = (evt) => {
+    if (evt.key === "Escape") {
+      closeModal(popupVariable);
+      document.removeEventListener("keydown", handleEscPress);
+    }
+  };
+  document.addEventListener("keydown", handleEscPress);
 }
 
 function closeModal(popupVariable) {
@@ -159,4 +166,18 @@ addButton.addEventListener("click", () => {
 });
 closeButtonPopupForAdding.addEventListener("click", () => {
   closeModal(popupForAdding);
+});
+
+//Закрываем попап кликом по оверлею
+const overlays = document.querySelectorAll(".popup");
+//console.log(overlays);
+overlays.forEach((overlay) => {
+  overlay.addEventListener("click", (evt) => {
+    //console.log(evt.currentTarget);
+    //console.log(evt.target);
+    if (evt.currentTarget === evt.target) {
+      //console.log("click");
+      closeModal(evt.target);
+    }
+  });
 });
