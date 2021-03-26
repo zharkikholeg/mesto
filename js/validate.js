@@ -26,21 +26,10 @@ const checkInputValidity = (form, input, {...rest}) => {
   }
 };
 
-//Вешаем проверку валидности для первого инпута формы био
-//Выбираем конкретные форму и ипут
-/*const testForm = document.forms.bio;
-const formInput = testForm.querySelector(".popup__input");
-formInput.addEventListener("input", function () {
-  checkInputValidity(testForm, formInput);
-});*/
 
 //Вешаем слушатели на все поля формы + меняем статус кнопки сабмита
 const setEventListeners = (form, {inputSelector, submitButtonSelector, ...rest }) => {
-  //console.log("Вешаем слушатели на все поля");
-  //console.log(inputSelector);
-  //console.log(rest);
   const inputList = Array.from(form.querySelectorAll(inputSelector));
-  //console.log(inputList);
   const buttonElement = form.querySelector(submitButtonSelector);
 
   toggleButtonState(inputList, buttonElement, rest);
@@ -74,8 +63,6 @@ function hasInvalidInput(inputList) {
 //Включаем валидацию для всех форм на странице
 const enableValidation = ({ formSelector, ...rest }) => {
   //Находим все формы и проходим по ним циклом
-  /*console.log(formSelector);
-  console.log(rest);*/
   const formList = Array.from(document.querySelectorAll(formSelector));
   formList.forEach((formElement) => {
     //Передаём rest в следующую функцию

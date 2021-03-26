@@ -9,10 +9,12 @@ const currentName = document.querySelector(".profile__info-name");
 const currentBio = document.querySelector(".profile__info-bio");
 const formElement = document.querySelector(".popup__form");
 
+const escButton = "Escape";
+
 function openModal(popupVariable) {
   popupVariable.classList.add("popup_active");
   const handleEscPress = (evt) => {
-    if (evt.key === "Escape") {
+    if (evt.key === escButton) {
       closeModal(popupVariable);
       document.removeEventListener("keydown", handleEscPress);
     }
