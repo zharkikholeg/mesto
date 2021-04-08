@@ -1,3 +1,6 @@
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
+
 // Весь этот код отвечает за попап с изменением bio и имени (до 40-ой строки)
 const editButton = document.querySelector(".profile__info-edit");
 const profilePopup = document.querySelector(".popup");
@@ -30,6 +33,10 @@ function openProfilePopup() {
   formName.value = currentName.textContent;
   formBio.value = currentBio.textContent;
   openModal(profilePopup);
+  //Включаем валидацию значений формы после её открытия
+  const bioForm = document.forms[0];
+  const bioValidation = new FormValidator(config, bioForm);
+  bioValidation.enableValidation();
 }
 
 function formSubmitHandler(evt) {
@@ -79,12 +86,10 @@ const initialCards = [
   },
 ];
 
-const elementTemplate = document.querySelector("#element").content;
-const elements = document.querySelector(".elements");
+const elementTemplate = document.querySelector("#element").content.querySelector(".element");
+
 
 const popupForPreviw = document.querySelector(".popup_for-preview");
-const popupName = popupForPreviw.querySelector(".popup__name");
-const popupImage = popupForPreviw.querySelector(".popup__image");
 const previewPopupCloseButton = document.querySelector(
   ".popup__close-icon_for-preview"
 );
@@ -92,54 +97,18 @@ previewPopupCloseButton.addEventListener("click", () => {
   closeModal(popupForPreviw);
 });
 
-// Функция для добавления элемента
-function createElement(name, imageLink) {
-  // Получаем содержимое template
 
-  // клонируем содержимое тега template
-  const element = elementTemplate.querySelector(".element").cloneNode(true);
 
-  // наполняем содержимым
-  element.querySelector(".element__image").src = imageLink;
-  element.querySelector(".element__image").alt = name;
-  element.querySelector(".element__text").textContent = name;
 
-  //Сохранение лайков
-  const likeButton = element.querySelector(".element__heart");
-
-  likeButton.addEventListener("click", function (evt) {
-    likeButton.classList.toggle("element__heart_active");
-  });
-
-  //Удаление элемента
-  const deleteButton = element.querySelector(".element__trash");
-
-  deleteButton.addEventListener("click", function () {
-    element.remove();
-  });
-
-  //Открытие поппа с превью по клику
-  const image = element.querySelector(".element__image");
-  image.addEventListener("click", function () {
-    popupImage.src = imageLink;
-    popupImage.alt = name;
-    popupName.textContent = name;
-
-    openModal(popupForPreviw);
-  });
-
-  return element;
-  //elements.prepend(element);
-}
-
-function renderElement(element) {
-  elements.prepend(element);
-}
-
-//Добавляем исходный массив элементов на страницу
-initialCards.forEach(function (item) {
-  renderElement(createElement(item.name, item.link));
+// Рендерим карты из массива используя класс Card
+const elements = document.querySelector(".elements");
+initialCards.forEach((item) => {
+  const card = new Card(item, '#element');
+  const cardElement = card.generateCard();
+  elements.append(cardElement);
 });
+
+
 
 //Попап для добавления элементов
 const addButton = document.querySelector(".profile__add-button");
@@ -154,17 +123,25 @@ const formForAddingElement = document.querySelector(
   "div.popup_for-adding .popup__form"
 );
 
+
+//Обрабатываем сабмит попапа для добавления новых карточек
 function formSubmitHandlerForAdding(evt) {
   evt.preventDefault();
   const name = formPlaceName.value;
   const link = formLink.value;
-  renderElement(createElement(name, link));
+  const card = new Card({name: name, link: link}, '#element');
+  const cardElement = card.generateCard();
+  elements.append(cardElement);
   closeModal(popupForAdding);
 }
 
 formForAddingElement.addEventListener("submit", formSubmitHandlerForAdding);
 addButton.addEventListener("click", () => {
   openModal(popupForAdding);
+  //Включаем валидацию данных для попапа добавления карточек
+  const addForm = document.forms[1];
+  const addValidation = new FormValidator(config, addForm);
+  addValidation.enableValidation();
 });
 closeButtonPopupForAdding.addEventListener("click", () => {
   closeModal(popupForAdding);
@@ -172,14 +149,22 @@ closeButtonPopupForAdding.addEventListener("click", () => {
 
 //Закрываем попап кликом по оверлею
 const overlays = document.querySelectorAll(".popup");
-//console.log(overlays);
 overlays.forEach((overlay) => {
   overlay.addEventListener("click", (evt) => {
-    //console.log(evt.currentTarget);
-    //console.log(evt.target);
     if (evt.currentTarget === evt.target) {
-      //console.log("click");
       closeModal(evt.target);
     }
   });
 });
+
+const config = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__submit",
+  inactiveButtonClass: "popup__submit_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__error_visible",
+}
+
+
+
