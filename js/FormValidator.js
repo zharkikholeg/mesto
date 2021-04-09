@@ -18,23 +18,23 @@ export default class FormValidator {
 
   // Вешаем слушатели на все поля ввода в этой форме
   _setEventListeners() {
-    const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
+    this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
     const buttonElement = this._formElement.querySelector(this._submitButtonSelector);
 
-    this._toggleButtonState(inputList, buttonElement);
+    this._toggleButtonState(buttonElement);
 
-    inputList.forEach((input) => {
+    this._inputList.forEach((input) => {
       input.addEventListener("input", () => {
-        this._checkInputValidity(this._formElement, input);
-        this._toggleButtonState(inputList, buttonElement);
+        this._checkInputValidity(input);
+        this._toggleButtonState(buttonElement);
       });
     });
   }
 
   //Изменяет состояние кнопки, принимает массив инпутов и кнопку
-  _toggleButtonState(inputList, buttonElement) {
+  _toggleButtonState(buttonElement) {
     
-    if (this._hasInvalidInput(inputList)) {
+    if (this._hasInvalidInput()) {
       buttonElement.classList.add(this._inactiveButtonClass);
       buttonElement.disabled = true;
     } else {
@@ -44,33 +44,33 @@ export default class FormValidator {
   }
 
   //Проверяет, есть ли хоть 1 невалидный инпут в массиве
-  _hasInvalidInput(inputList) {
-    return inputList.some((inputElement) => {
+  _hasInvalidInput() {
+    return this._inputList.some((inputElement) => {
       return !inputElement.validity.valid;
     });
   }
 
   //Функция проверки валидности инпута, которая дальше показывает или скрывапет сообщение об ошибке
-  _checkInputValidity (form, input) {
+  _checkInputValidity (input) {
     if (!input.validity.valid) {
-      this._showError(form, input, input.validationMessage);
+      this._showError(input, input.validationMessage);
     } else {
-      this._hideError(form, input);
+      this._hideError(input);
     }
   };
 
   //Показываем сообщение об ошибке
-  _showError (form, input, errorMessage) {
+  _showError (input, errorMessage) {
     //console.log(rest);
-    const formError = form.querySelector(`.${input.id}-error`);
+    const formError = this._formElement.querySelector(`.${input.id}-error`);
     input.classList.add(this._inputErrorClass);
     formError.textContent = errorMessage;
     formError.classList.add(this._errorClass);
   };
 
   //Скрываем сообщение об ошибке
-  _hideError (form, input) {
-    const formError = form.querySelector(`.${input.id}-error`);
+  _hideError (input) {
+    const formError = this._formElement.querySelector(`.${input.id}-error`);
     input.classList.remove(this._inputErrorClass);
     formError.classList.remove(this._errorClass);
     formError.textContent = "";

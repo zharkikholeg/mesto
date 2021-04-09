@@ -50,6 +50,7 @@ export default class Card {
   //Обработка удалений
   _handleDeleteClick() {
     this._element.remove();
+    this._element = null;
   }
 
   //Обработка открытия попапа
@@ -63,19 +64,22 @@ export default class Card {
     const escButton = "Escape";
     openModal(popupForPreviw);
 
-    function openModal(popupVariable) {
-      popupVariable.classList.add("popup_active");
-      const handleEscPress = (evt) => {
-        if (evt.key === escButton) {
-          closeModal(popupVariable);
-          document.removeEventListener("keydown", handleEscPress);
-        }
-      };
-      document.addEventListener("keydown", handleEscPress);
+    function handleEscPress(evt) {
+      if (evt.key === escButton) {
+        closeModal()
+        document.removeEventListener('keydown', handleEscPress)
+      }
     }
-    
-    function closeModal(popupVariable) {
-      popupVariable.classList.remove("popup_active");
+
+    function openModal(popupVariable) {
+      popupVariable.classList.add('popup_active')
+      document.addEventListener('keydown', handleEscPress)
+    }
+
+    function closeModal() {
+      const openedPopup = document.querySelector('.popup_active')
+      openedPopup.classList.remove('popup_active')
+      document.removeEventListener('keydown', handleEscPress)
     }
   }
 }
