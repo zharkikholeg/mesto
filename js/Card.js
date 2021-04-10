@@ -1,3 +1,4 @@
+import {closeModal, handleEscPress} from "./index.js";
 // Реализация добавления карточек с помощью класса
 export default class Card {
   constructor (data, cardSelector) {
@@ -64,22 +65,10 @@ export default class Card {
     const escButton = "Escape";
     openModal(popupForPreviw);
 
-    function handleEscPress(evt) {
-      if (evt.key === escButton) {
-        closeModal()
-        document.removeEventListener('keydown', handleEscPress)
-      }
-    }
 
     function openModal(popupVariable) {
       popupVariable.classList.add('popup_active')
       document.addEventListener('keydown', handleEscPress)
-    }
-
-    function closeModal() {
-      const openedPopup = document.querySelector('.popup_active')
-      openedPopup.classList.remove('popup_active')
-      document.removeEventListener('keydown', handleEscPress)
     }
   }
 }

@@ -21,6 +21,8 @@ const elements = document.querySelector(".elements");
 const popupForPreviw = document.querySelector(".popup_for-preview");
 const buttonForClosingPreviewPopup = document.querySelector(".popup__close-icon_for-preview");
 const overlays = document.querySelectorAll(".popup");
+const addForm = document.querySelector('.popup__form_type_place');
+const bioForm = document.querySelector('.popup__form_type_bio');
 const config = {
   formSelector: ".popup__form",
   inputSelector: ".popup__input",
@@ -29,6 +31,11 @@ const config = {
   inputErrorClass: "popup__input_type_error",
   errorClass: "popup__error_visible",
 }
+
+//Добавляем данные в форму Bio, чтобы валидация конкретно сработала до её открытия
+formName.value = currentName.textContent;
+formBio.value = currentBio.textContent;
+
 
 function handleEscPress(evt) {
   if (evt.key === escButton) {
@@ -51,10 +58,6 @@ function openProfilePopup() {
   formName.value = currentName.textContent;
   formBio.value = currentBio.textContent;
   openModal(profilePopup);
-  //Включаем валидацию значений формы после её открытия
-  const bioForm = document.querySelector('.popup__form_type_bio');
-  const bioValidation = new FormValidator(config, bioForm);
-  bioValidation.enableValidation();
 }
 
 function formSubmitHandler(evt) {
@@ -72,7 +75,7 @@ function formSubmitHandlerForAdding(evt) {
   const card = new Card({name: name, link: link}, '#element');
   const cardElement = card.generateCard();
   elements.prepend(cardElement);
-  closeModal(popupForAdding);
+  closeModal();
 }
 
 
@@ -83,26 +86,22 @@ buttonForClosing.addEventListener("click", () => {
   closeModal();
 });
 buttonForClosingPreviewPopup.addEventListener("click", () => {
-  closeModal(popupForPreviw);
+  closeModal();
 });
 formForAddingElement.addEventListener("submit", formSubmitHandlerForAdding);
 
 buttonForAdding.addEventListener("click", () => {
   openModal(popupForAdding);
-  //Включаем валидацию данных для попапа добавления карточек
-  const addForm = document.querySelector('.popup__form_type_place');
-  const addValidation = new FormValidator(config, addForm);
-  addValidation.enableValidation();
 });
 buttonForClosingPopupForAdding.addEventListener("click", () => {
-  closeModal(popupForAdding);
+  closeModal();
 });
 
 //Закрываем попап кликом по оверлею
 overlays.forEach((overlay) => {
   overlay.addEventListener("click", (evt) => {
     if (evt.currentTarget === evt.target) {
-      closeModal(evt.target);
+      closeModal();
     }
   });
 });
@@ -116,5 +115,12 @@ initialCards.forEach((item) => {
   elements.append(cardElement);
 });
 
+//Включаем валидацию значений формы после её открытия
+const bioValidation = new FormValidator(config, bioForm);
+bioValidation.enableValidation();
 
+//Включаем валидацию данных для попапа добавления карточек
+const addValidation = new FormValidator(config, addForm);
+addValidation.enableValidation();
 
+export {closeModal, handleEscPress}
