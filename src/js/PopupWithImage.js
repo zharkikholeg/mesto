@@ -1,9 +1,10 @@
 import Popup from "./Popup.js"
 
 export default class PopupWithImage extends Popup {
-  constructor(cardSelector, src) {
+  constructor(cardSelector, src, name) {
     super(cardSelector);
     this._src = src;
+    this._name = name;
     }
 
   open() {

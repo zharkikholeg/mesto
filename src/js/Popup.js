@@ -15,11 +15,9 @@ export default class Popup {
   }
   
   close() {
-    //console.log(this);
-    const openedPopup = document.querySelector('.popup_active');
+    let openedPopup = document.querySelector(this._popupSelector);
     openedPopup.classList.remove('popup_active');
     document.removeEventListener('keydown', this._handleEscPress);
-    //console.log(openedPopup);
   }
 
   _handleEscPress(evt) {
@@ -32,7 +30,10 @@ export default class Popup {
   }
 
   setEventListeners() {
-    document.querySelectorAll(".popup").forEach((overlay) => {
+    //console.log(document.querySelector(".popup_active").querySelectorAll(".popup__close-icon"))
+
+
+    document.querySelectorAll(".popup_active").forEach((overlay) => {
       overlay.addEventListener("click", (evt) => {
         if (evt.currentTarget === evt.target) {
           console.log("overlay click worked from Popup class");
@@ -41,21 +42,13 @@ export default class Popup {
       });
     });
 
-    console.log(document.querySelectorAll(".popup__close-icon"))
+    //console.log(document.querySelectorAll(".popup__close-icon"))
 
-    document.querySelectorAll(".popup__close-icon").forEach(item => {
+    document.querySelector(".popup_active").querySelectorAll(".popup__close-icon").forEach(item => {
       item.addEventListener('click', event => {
         this.close();
       })
     })
- 
-
-
-    document.querySelector(".popup__close-icon_for-preview").addEventListener("click", () => {
-      console.log("button click worked from Popup class");
-      this.close();
-    });
-
   }  
 
 }

@@ -10,7 +10,7 @@ export default class PopupWithForm extends Popup {
 
   _getInputValues() {
     // достаём все элементы полей
-    this._inputList = document.querySelectorAll(".popup__input");
+    this._inputList = document.querySelector(this._popupSelector).querySelectorAll(".popup__input");
   
     // создаём пустой объект
     this._formValues = {};
@@ -27,20 +27,23 @@ export default class PopupWithForm extends Popup {
   setEventListeners() {
     super.setEventListeners();
 
-    document.querySelector(this._popupSelector).addEventListener('submit', (evt) => {
+    document.querySelector(".popup_active" + this._popupSelector).addEventListener('submit', (evt) => {
       evt.preventDefault();
       this._submitFormCallback(this._getInputValues());
       this.close();
     });
+
+    
   }
 
   close() {
-    const openedPopup = document.querySelector('.popup_active');
+    let openedPopup = document.querySelector(this._popupSelector);
     openedPopup.classList.remove('popup_active');
     document.removeEventListener('keydown', this._handleEscPress);
     document.querySelectorAll('.popup__form').forEach(form => {
       form.reset();
     })
+    openedPopup.outerHTML = openedPopup.outerHTML;
   }
 
   

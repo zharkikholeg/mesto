@@ -77,8 +77,8 @@ function formSubmitHandlerForAdding(evt) {
 //Попап для редактирования био
 buttonForEditing.addEventListener("click", () => {
   const popup = new PopupWithForm(".popup_for-editing", (obj) => {
-    console.log("callback called");
-    console.log(obj);
+    //console.log("callback called");
+    //console.log(obj);
     currentName.textContent = obj.name;
     currentBio.textContent = obj.bio;
   })
@@ -102,12 +102,12 @@ buttonForEditing.addEventListener("click", () => {
 
 
 // Рендерим карты из массива используя класс Card и Section
-const cardsList = new Section({
+let cardsList = new Section({
   data: initialCards,
   renderer: (item) => {
     const card = new Card(item, "#element", {
     handleCardClick: () => {
-      const imagePopup = new PopupWithImage (".popup_for-preview", item.link);
+      const imagePopup = new PopupWithImage (".popup_for-preview", item.link, item.name);
       imagePopup.open();
       imagePopup.setEventListeners();
       }
@@ -140,9 +140,9 @@ buttonForAdding.addEventListener("click", () => {
       });
     const cardElement = card.generateCard();
 
-    document.querySelector(".elements").innerHTML = "";
+    //document.querySelector(".elements").innerHTML = "";
     cardsList.addItem(cardElement);
-    cardsList.renderItems();
+    //cardsList.renderItems();
   })
   popup.open();
   popup.setEventListeners();
