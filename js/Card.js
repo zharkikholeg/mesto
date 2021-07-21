@@ -1,10 +1,11 @@
 import {closeModal, handleEscPress} from "./index.js";
 // Реализация добавления карточек с помощью класса
 export default class Card {
-  constructor (data, cardSelector) {
+  constructor (data, cardSelector, {handleCardClick}) {
     this._cardSelector = cardSelector;
     this._name = data.name;
     this._link = data.link;
+    this._handleCardClick = handleCardClick;
   }
 
   //Получаем темплейт по кардСелектору
@@ -39,7 +40,7 @@ export default class Card {
       this._handleDeleteClick();
     });
     this._element.querySelector('.element__image').addEventListener('click', () => {
-      this._handleImageClick();
+      this._handleCardClick();
     });
   }
 

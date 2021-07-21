@@ -1,12 +1,23 @@
-import '../pages/index.css';
+console.log('Hello, World!') 
 
-import Card from "./Card.js";
-import FormValidator from "./FormValidator.js";
-import initialCards from "./initial-cards.js";
-import Section from "./Section.js";
-import UserInfo from "./UserInfo.js"
-import PopupWithImage from "./PopupWithImage.js"
-import PopupWithForm from "./PopupWithForm.js"
+import './index.css';
+// теперь картинки можно импортировать,
+// вебпак добавит в переменные правильные пути
+const ava = new URL('./images/ava.jpg', import.meta.url);
+
+
+const whoIsTheGoat = [
+  // меняем исходные пути на переменные
+  { name: 'ava', image: ava }
+];
+
+import Card from "../js/Card.js";
+import FormValidator from "../js/FormValidator.js";
+import initialCards from "../js/initial-cards.js";
+import Section from "../js/Section.js";
+import UserInfo from "../js/UserInfo.js"
+import PopupWithImage from "../js/PopupWithImage.js"
+import PopupWithForm from "../js/PopupWithForm.js"
 
 const buttonForEditing = document.querySelector(".profile__info-edit");
 const profilePopup = document.querySelector(".popup");
