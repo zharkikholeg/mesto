@@ -1,14 +1,27 @@
 export default class FormValidator {
   constructor(configObject, formElement) {
+    //console.log(configObject)
     this._inputSelector = configObject.inputSelector;
     this._submitButtonSelector = configObject.submitButtonSelector;
     this._inactiveButtonClass = configObject.inactiveButtonClass;
     this._inputErrorClass = configObject.inputErrorClass;
     this._errorClass = configObject.errorClass;
     this._formElement = formElement;
+    this._button = formElement.querySelector(configObject.submitButtonSelector);
+    this._inputList = Array.from(formElement.querySelectorAll(configObject.inputSelector));
   }
 
-  //Включаемвалидацию для этой конкретной кнопки
+  resetValidation() {
+    this._toggleButtonState();// <== управляем кнопкой ==
+
+    this._inputList.forEach((inputElement) => {
+      this._hideError(inputElement)// <==очищаем ошибки ==
+    });
+
+  }
+
+
+  //Включаем валидацию для этой конкретной кнопки
   enableValidation() {
     this._setEventListeners();
     this._formElement.addEventListener("submit", function (evt) {
@@ -18,28 +31,25 @@ export default class FormValidator {
 
   // Вешаем слушатели на все поля ввода в этой форме
   _setEventListeners() {
-    this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
-    const buttonElement = this._formElement.querySelector(this._submitButtonSelector);
-
-    this._toggleButtonState(buttonElement);
+    this._toggleButtonState();
 
     this._inputList.forEach((input) => {
       input.addEventListener("input", () => {
         this._checkInputValidity(input);
-        this._toggleButtonState(buttonElement);
+        this._toggleButtonState();
       });
     });
   }
 
   //Изменяет состояние кнопки, принимает массив инпутов и кнопку
-  _toggleButtonState(buttonElement) {
+  _toggleButtonState() {
     
     if (this._hasInvalidInput()) {
-      buttonElement.classList.add(this._inactiveButtonClass);
-      buttonElement.disabled = true;
+      this._button.classList.add(this._inactiveButtonClass);
+      this._button.disabled = true;
     } else {
-      buttonElement.classList.remove(this._inactiveButtonClass);
-      buttonElement.disabled = false;
+      this._button.classList.remove(this._inactiveButtonClass);
+      this._button.disabled = false;
     }
   }
 

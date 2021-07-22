@@ -1,19 +1,18 @@
 export default class UserInfo {
   constructor(nameSelector, bioSelector) {
-    this._nameSelector = nameSelector;
-    this._bioSelector = bioSelector;
+    this._name = document.querySelector(nameSelector);
+    this._bio = document.querySelector(bioSelector);
   }
 
   getUserInfo() {
     return {
-      "name": document.querySelector(this._nameSelector).textContent,
-      "bio": document.querySelector(this._bioSelector).textContent
+      "name": this._name.textContent,
+      "bio": this._bio.textContent
     }
   }
 
   setUserInfo(name, bio) {
-    document.querySelector(this._nameSelector).textContent = name;
-    document.querySelector(this._bioSelector).textContent = bio;
-    closeModal();
+    this._name.textContent = name;
+    this._bio.textContent = bio;
   }
 }

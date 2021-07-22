@@ -6,11 +6,12 @@ export default class PopupWithForm extends Popup {
     super(popupSelector);
     this._submitFormCallback = submitFormCallback;
     this.close = this.close.bind(this);
+    this._form = document.querySelector(popupSelector).querySelector(".popup__form")
 	}
 
   _getInputValues() {
     // достаём все элементы полей
-    this._inputList = document.querySelector(this._popupSelector).querySelectorAll(".popup__input");
+    this._inputList = this._popup.querySelectorAll(".popup__input");
   
     // создаём пустой объект
     this._formValues = {};
@@ -27,7 +28,7 @@ export default class PopupWithForm extends Popup {
   setEventListeners() {
     super.setEventListeners();
 
-    document.querySelector(".popup_active" + this._popupSelector).addEventListener('submit', (evt) => {
+    this._form.addEventListener('submit', (evt) => {
       evt.preventDefault();
       this._submitFormCallback(this._getInputValues());
       this.close();
@@ -37,13 +38,8 @@ export default class PopupWithForm extends Popup {
   }
 
   close() {
-    let openedPopup = document.querySelector(this._popupSelector);
-    openedPopup.classList.remove('popup_active');
-    document.removeEventListener('keydown', this._handleEscPress);
-    document.querySelectorAll('.popup__form').forEach(form => {
-      form.reset();
-    })
-    openedPopup.outerHTML = openedPopup.outerHTML;
+    super.close();
+    this._form.reset();
   }
 
   

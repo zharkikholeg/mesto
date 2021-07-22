@@ -1,4 +1,3 @@
-import {closeModal, handleEscPress} from "./index.js";
 // Реализация добавления карточек с помощью класса
 export default class Card {
   constructor (data, cardSelector, {handleCardClick}) {
@@ -55,21 +54,4 @@ export default class Card {
     this._element = null;
   }
 
-  //Обработка открытия попапа
-  _handleImageClick() {
-    const popupForPreviw = document.querySelector(".popup_for-preview");
-    const popupName = popupForPreviw.querySelector(".popup__name");
-    const popupImage = popupForPreviw.querySelector(".popup__image");
-    popupImage.src = this._link;
-    popupImage.alt = this._name;
-    popupName.textContent = this._name;
-    const escButton = "Escape";
-    openModal(popupForPreviw);
-
-
-    function openModal(popupVariable) {
-      popupVariable.classList.add('popup_active')
-      document.addEventListener('keydown', handleEscPress)
-    }
-  }
 }

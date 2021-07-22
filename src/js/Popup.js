@@ -2,22 +2,22 @@ export default class Popup {
 	constructor(popupSelector) {
     this._popupSelector = popupSelector;
     this.open = this.open.bind(this);
+    this._popup = document.querySelector(popupSelector);
+    this._handleEscPress = this._handleEscPress.bind(this)
 	}
 
   open() {
     //console.log(document.querySelector(this._popupSelector))
-    document.querySelector(this._popupSelector).classList.add('popup_active');
+    this._popup.classList.add('popup_active');
     //console.log("opened popup");
-    document.addEventListener('keydown', (evt) => {
-      this._handleEscPress(evt);
-    });
+    document.addEventListener('keydown', this._handleEscPress);
     
   }
   
   close() {
-    let openedPopup = document.querySelector(this._popupSelector);
-    openedPopup.classList.remove('popup_active');
+    this._popup.classList.remove('popup_active');
     document.removeEventListener('keydown', this._handleEscPress);
+    //this._popup.outerHTML = this._popup.outerHTML; 
   }
 
   _handleEscPress(evt) {
@@ -30,25 +30,17 @@ export default class Popup {
   }
 
   setEventListeners() {
-    //console.log(document.querySelector(".popup_active").querySelectorAll(".popup__close-icon"))
 
-
-    document.querySelectorAll(".popup_active").forEach((overlay) => {
-      overlay.addEventListener("click", (evt) => {
-        if (evt.currentTarget === evt.target) {
-          console.log("overlay click worked from Popup class");
-          this.close();
-        }
-      });
+    this._popup.addEventListener("click", (evt) => {
+      if (evt.currentTarget === evt.target) {
+        console.log("overlay click worked from Popup class");
+        this.close();
+      }
     });
 
-    //console.log(document.querySelectorAll(".popup__close-icon"))
-
-    document.querySelector(".popup_active").querySelectorAll(".popup__close-icon").forEach(item => {
-      item.addEventListener('click', event => {
-        this.close();
-      })
-    })
+    this._popup.querySelector(".popup__close-icon").addEventListener('click', event => {
+      this.close();
+    });
   }  
 
 }
