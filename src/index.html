@@ -12,13 +12,18 @@
       </header>
       <main>
         <section class="profile">
-          <img class="profile__avatar" src="<%=require('./images/ava.jpg')%>" alt="аватар">
+          <div class="profile__avatar-wrapper">
+            <div class="profile__avatar-overlay">
+              <img src="<%=require('./images/pen.svg')%>" alt="" class="profile__avatar-overlay-image">
+            </div>
+            <img class="profile__avatar" src="" alt="аватар">
+          </div>
           <div class="profile__info">
             <div class="profile__info-wrapper">
-              <h1 class="profile__info-name">Жак-Ив Кусто</h1>
+              <h1 class="profile__info-name"></h1>
                 <button class="profile__info-edit" type="button"></button>
             </div>
-            <p class="profile__info-bio">Исследователь океана</p>
+            <p class="profile__info-bio"></p>
           </div>
           <button class="profile__add-button" type="button"></button>
         </section>
@@ -61,13 +66,35 @@
         </div>
       </div>
 
-          <div class="popup popup_for-preview">
-            <div class="popup__preview-container">
-              <button class="popup__close-icon popup__close-icon_for-preview" type="button"></button>
-              <img src="#" alt="#" class="popup__image">
-              <h4 class="popup__name"></h4>
-            </div>
-          </div>
+      <div class="popup popup_for-ava">
+        <div class="popup__container">
+          <h2 class="popup__heading">Обновить аватар</h2>
+          <form class="popup__form popup__form_type_ava" name="place" novalidate>
+            <input class="popup__input" id="link" name="link" placeholder="Ссылка на картинку" type="url" required>
+            <span class="popup__error link-error"></span>
+            <input class="popup__submit" type="submit" value="Сохранить">
+          </form>
+          <button class="popup__close-icon" type="button"></button>
+        </div>
+      </div>
+
+      <div class="popup popup_for-submit">
+        <div class="popup__container popup__container_for-submit">
+          <h2 class="popup__heading">Вы уверены?</h2>
+          <form class="popup__form popup__form_type_submit" name="place" novalidate>
+            <input class="popup__submit popup__submit_type-submit" type="submit" value="Да">
+          </form>
+          <button class="popup__close-icon" type="button"></button>
+        </div>
+      </div>
+
+      <div class="popup popup_for-preview">
+        <div class="popup__preview-container">
+          <button class="popup__close-icon popup__close-icon_for-preview" type="button"></button>
+          <img src="#" alt="#" class="popup__image">
+          <h4 class="popup__name"></h4>
+        </div>
+      </div>
 
           <template id="element">
             <li class="element">
@@ -77,7 +104,11 @@
               </div>
               <div class="element__wrapper">
                 <h3 class="element__text"></h3>
-                <button type="button" class="element__heart"></button>
+                <div class="element__likes-wrapper">
+                  <button type="button" class="element__heart"></button>
+                  <p class="element__likecount">0</p>
+                </div>
+                
               </div>
             </li>
           </template>

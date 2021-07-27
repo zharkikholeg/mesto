@@ -5,8 +5,7 @@
   width: 22px;
   cursor: pointer;
   
-  top: 312px;
-  right: 30px;
+
   -webkit-transition: opacity 0.6s ease-in-out;
   -moz-transition: opacity 0.6s ease-in-out;
   -ms-transition: opacity 0.6s ease-in-out;
@@ -22,3 +21,4 @@
 .element__heart:active {
   background-image: url("../../../images/heart-black.svg");
 }
+
