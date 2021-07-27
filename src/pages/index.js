@@ -2,7 +2,6 @@ import './index.css';
 
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
-//import initialCards from "../utils/initial-cards.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js"
 import PopupWithImage from "../components/PopupWithImage.js"
@@ -10,7 +9,6 @@ import PopupWithForm from "../components/PopupWithForm.js"
 import PopupWithSubmit from "../components/PopupWithSubmit.js"
 import config from "../utils/constants.js"
 import Api from "../components/Api.js";
-//import { data } from 'autoprefixer';
 
 const buttonForEditing = document.querySelector(".profile__info-edit");
 const buttonForAdding = document.querySelector(".profile__add-button");
