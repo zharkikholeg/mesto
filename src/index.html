@@ -16,7 +16,7 @@
             <div class="profile__avatar-overlay">
               <img src="<%=require('./images/pen.svg')%>" alt="" class="profile__avatar-overlay-image">
             </div>
-            <img class="profile__avatar" src="" alt="аватар">
+            <img class="profile__avatar" src="#" alt="аватар">
           </div>
           <div class="profile__info">
             <div class="profile__info-wrapper">
@@ -70,8 +70,8 @@
         <div class="popup__container">
           <h2 class="popup__heading">Обновить аватар</h2>
           <form class="popup__form popup__form_type_ava" name="place" novalidate>
-            <input class="popup__input" id="link" name="link" placeholder="Ссылка на картинку" type="url" required>
-            <span class="popup__error link-error"></span>
+            <input class="popup__input" id="linkforava" name="link" placeholder="Ссылка на картинку" type="url" required>
+            <span class="popup__error linkforava-error"></span>
             <input class="popup__submit" type="submit" value="Сохранить">
           </form>
           <button class="popup__close-icon" type="button"></button>
