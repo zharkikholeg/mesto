@@ -41,6 +41,16 @@ const fetchConfig = {
 const currentUserInfo = new UserInfo(".profile__info-name", ".profile__info-bio");
 
 let myId = null;
+
+//Создаём Section под карточки, рендерим потом
+const cardsList = new Section({
+  renderer: (item) => {
+    cardsList.addItem(createCard(item));
+    }
+  },
+  ".elements"
+);
+
 const api = new Api(fetchConfig)
 //Получаем и выводим данные пользователя
 api.getUser().then((data) => {
@@ -49,34 +59,19 @@ api.getUser().then((data) => {
   userPic.src = data.avatar;
   myId = data._id;
   //console.log(myId);
-})
+}).then( //Получаем и рендерим карточки
+  api.getAllCards().then((data) => {
+    console.log(data);
+    //Рендерим карточки в Section
+    cardsList.renderItems(data);
+  })
+).catch((err) => {
+  console.log(err); 
+});
 
-let initialCards = []
+
 //Получаем и выводим карточки
-api.getAllCards().then((data) => {
-  console.log(data);
-  data.forEach(item => {
-    initialCards.unshift(
-      {name: item.name, 
-      link: item.link,
-      likes: item.likes,
-      ownerId: item.owner._id,
-      cardId: item._id,
-      myId: myId
-    })
-  });
-  console.log(initialCards);
-  //Рендерим секцию с карточками
-  const cardsList = new Section({
-    data: initialCards,
-    renderer: (item) => {
-      cardsList.addItem(createCard(item));
-      },
-    },
-    ".elements"
-  );
-  cardsList.renderItems();
-})
+
 
 
 
@@ -104,10 +99,11 @@ const avaPopup = new PopupWithForm(".popup_for-ava", (obj) => {
     //console.log(res);
     userPic.src = res.avatar;
     avaPopup.close();
-    document.querySelector(".popup_for-ava .popup__submit").value = "Сохранить";
   }).catch((err) => {
     console.log(err); 
-  });
+  }).finally(() => {
+    document.querySelector(".popup_for-ava .popup__submit").value = "Сохранить";
+  })
 
 })
 avaPopup.setEventListeners();
@@ -127,10 +123,11 @@ avaWrapper.addEventListener("click", () => {
       //console.log(res);
       currentUserInfo.setUserInfo(res.name, res.about);
       bioPopup.close();
-      document.querySelector(".popup_for-editing .popup__submit").value = "Сохранить";
     }).catch((err) => {
       console.log(err); 
-    });
+    }).finally(() => {
+      document.querySelector(".popup_for-editing .popup__submit").value = "Сохранить";
+    })
     
   },)
 
@@ -155,6 +152,7 @@ submitPopup.setEventListeners();
 function createCard(data) {
   const card = new Card(
     data,
+    myId,
     "#element", {
     handleCardClick: () => {
       console.log(data);
@@ -194,16 +192,16 @@ function createCard(data) {
 }
 
 
-// Рендерим карты из массива используя класс Card и Section
-const cardsList = new Section({
-  data: initialCards,
-  renderer: (item) => {
-    cardsList.addItem(createCard(item));
-    },
-  },
-  ".elements"
-);
-cardsList.renderItems();
+// // Рендерим карты из массива используя класс Card и Section
+// const cardsList = new Section({
+//   data: initialCards,
+//   renderer: (item) => {
+//     cardsList.addItem(createCard(item));
+//     },
+//   },
+//   ".elements"
+// );
+// cardsList.renderItems();
 
 //Добавление новой карточки
   const popupForAdding = new PopupWithForm(".popup_for-adding", (obj) => {
@@ -220,10 +218,12 @@ cardsList.renderItems();
       console.log(data);
       cardsList.addItem(createCard(data));
       popupForAdding.close();
-      document.querySelector(".popup_for-adding .popup__submit").value = "Создать";
+      
     }).catch((err) => {
       console.log(err); 
-    });
+    }).finally(() => {
+      document.querySelector(".popup_for-adding .popup__submit").value = "Создать";
+    })
     item.myId = myId;
     
 
